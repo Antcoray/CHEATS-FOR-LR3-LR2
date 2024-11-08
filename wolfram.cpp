@@ -1,5 +1,5 @@
 /* КОМАНДА ДЛЯ КОМПИЛЯЦИИ clang++ wolfram.cpp -o WolframAlphaProgram -lcurl
- * НЕОБХОДИМЫЕ БИБЛИОТЕКИ 1) libcurl (sudo apt-get install libcur14-openssl-dev)
+ * НЕОБХОДИМЫЕ БИБЛИОТЕКИ 1) libcurl (sudo apt-get install libcurl4-openssl-dev)
  *                        2) nlohmann/json (sudo apt install nlohmann-json3-dev)
  *                                                 /|\
  *                                                  |
