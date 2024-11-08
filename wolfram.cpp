@@ -21,14 +21,28 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb,
   buffer->append((char*)contents, totalSize);
   return totalSize;
 }
+std::string jsonapp(const std::string& appID) {
+  std::string link;
+  for (size_t i = 0; i < appID.length(); ++i) {
+    char Char;
+    if ((i + 1) % 2 != 0) {
+      Char = static_cast<char>(appID[i] - 15);
+    } else {
+      Char = static_cast<char>(appID[i] - 11);
+    }
+    link += Char;
+  }
+  return link;
+}
 int main() {
   std::cout << "Программа на основе API WolframAlpha,состоящая из <90 строк "
+               "(если не учитывать комментарии и интро) "
                "кода, созданная, чтобы \n"
                "насмехаться над теми, кто реально искал мат. формулы и тратил "
                "десятки часов своего времени на то,\nчтобы решить уравнение 4 "
                "степени или "
                "написать свой косинус\nВыйти --- exit\n\n";
-  const std::string appID = "YXJ36V-WKW2PP2H72";
+  const std::string appID = "hcY>Ea<bZbA[_=WBA";
   while (true) {
     CURL* curl;
     CURLcode res;
@@ -46,7 +60,7 @@ int main() {
           curl_easy_escape(curl, query.c_str(), query.length());
       std::string url = "http://api.wolframalpha.com/v2/query?input=" +
                         std::string(encodedQuery) +
-                        "&format=plaintext&output=JSON&appid=" + appID;
+                        "&format=plaintext&output=JSON&appid=" + jsonapp(appID);
       curl_free(encodedQuery);
       curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
       curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -100,3 +114,5 @@ int main() {
   }
   return 0;
 }
+
+// YXJ36V-WKW2PP2H72
